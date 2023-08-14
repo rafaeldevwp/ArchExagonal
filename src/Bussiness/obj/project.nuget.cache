@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "oI0u6bQfit0h/DWjl4k95OlfJ/QtVGy2mHdYullSxf2CpGlyjcmk/W/MEeVhPZl5Ck1jMvhlOhxvRKjwconhmQ==",
+  "success": true,
+  "projectFilePath": "C:\\Estudos Dev\\HexEscola\\src\\Bussiness\\Bussiness.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Faell\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512"
+  ],
+  "logs": []
+}
