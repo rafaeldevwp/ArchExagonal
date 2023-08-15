@@ -1,5 +1,6 @@
 using Bussiness.Entidades;
-using Bussiness.Interfaces.UseCases.Services.AlunoServices;
+using Bussiness.Interfaces;
+using Bussiness.Interfaces.Services;
 
 namespace Infra.Services.AlunoServices
 {
@@ -16,6 +17,11 @@ namespace Infra.Services.AlunoServices
         }
 
         public Task<ICollection<Aluno>> ObterAlunosAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Aluno> UpdateAsync(Aluno aluno, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

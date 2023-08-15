@@ -1,22 +1,23 @@
 using Bussiness.Entidades;
 using Bussiness.Interfaces.UseCases;
-using Bussiness.Interfaces.UseCases.Services.AlunoServices;
+using Bussiness.Interfaces.Services;
 
 namespace Bussiness.UseCases
 {
     public class MatriculaAlunoUseCase : IMatriculaAlunoUseCase
     {
-        private readonly IAlunoServices _alunoServices;
+        
+        private readonly IMatriculaService _matriculaService;
 
-        public MatriculaAlunoUseCase(IAlunoServices alunoServices)
+        public MatriculaAlunoUseCase( IMatriculaService matriculaService)
         {
-            _alunoServices = alunoServices;
+            _matriculaService = matriculaService;
         }
 
         public async Task Execute(Aluno aluno, CancellationToken cancellationToken, Guid CorrelationId)
         {
-            if (await _alunoServices.ObterAlunoAsync(aluno, cancellationToken) is null)
-                await _alunoServices.InsertAsync(aluno,cancellationToken);
+            if(await _matriculaService.ObterMatricula(aluno,cancellationToken,CorrelationId) is null)
+                await _matriculaService.InsertAsync(aluno,cancellationToken,CorrelationId);
         }
     }
 }
