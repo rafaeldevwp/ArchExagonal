@@ -28,6 +28,8 @@ namespace Bussiness.UseCases
                 _mapper.Map<ResponseAlunoDto>
                    (await _alunoServices.ObterAlunoAsync(aluno, cancellationToken));
             }
+
+            await Task.CompletedTask;
         }
     }
 }

@@ -29,5 +29,8 @@ namespace Tests.Mock
 
             return alunoFaker.Generate();
         }
+
+         public static ResponseAlunoDto GetMockNull() => default;
+
     }
 }

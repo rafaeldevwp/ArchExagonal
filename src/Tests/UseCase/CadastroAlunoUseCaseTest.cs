@@ -22,7 +22,6 @@ namespace Tests.UseCase
         }
 
 
-
         [Fact]
         public async Task Executar_ComSucesso()
         {
