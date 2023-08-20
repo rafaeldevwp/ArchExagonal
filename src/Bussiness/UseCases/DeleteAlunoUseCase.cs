@@ -24,17 +24,17 @@ namespace Bussiness.UseCases
             {
                 var alunoRecuperado = await _alunoService.ObterAlunoAsync(aluno, cancellationToken);
 
-                if (!alunoRecuperado.Status.Equals((int)eStatusAluno.Desativado))
-                {
-                    alunoRecuperado.Status = eStatusAluno.Desativado;
-                    var alunoDesativado = await _alunoService.UpdateAsync(alunoRecuperado, cancellationToken);
+                if (alunoRecuperado is null)
+                    return;
 
-                    _mapper.Map<ResponseAlunoDto>(alunoDesativado);
-                }
-                else
-                {
-                    _mapper.Map<ResponseAlunoDto>(aluno);
-                }
+                if (alunoRecuperado.Status.Equals((int)eStatusAluno.Desativado))
+                    return;
+
+                alunoRecuperado.Status = eStatusAluno.Desativado;
+                var alunoDesativado = await _alunoService.UpdateAsync(alunoRecuperado, cancellationToken);
+
+                _mapper.Map<ResponseAlunoDto>(alunoDesativado);
+
             }
             catch (Exception)
             {

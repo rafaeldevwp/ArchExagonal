@@ -26,7 +26,6 @@ namespace Tests.UseCase
         [Fact]
         public async Task Executar_ComSucesso()
         {
-
             //Arrange
             var alunoMock = AlunoMock.GetMock();
             var alunoDTO = ResponseAlunoDtoMock.GetMock();
@@ -46,11 +45,9 @@ namespace Tests.UseCase
 
         }
 
-
         [Fact]
         public async Task Executar_ComExcecao()
         {
-
             //Arrange
             var alunoMock = AlunoMock.GetMock();
             var alunoDTO = ResponseAlunoDtoMock.GetMock();
@@ -67,15 +64,12 @@ namespace Tests.UseCase
 
             //Assert
             await _alunoService.DidNotReceive().UpdateAsync(Arg.Any<Aluno>(), Arg.Any<CancellationToken>());
-
         }
-
 
 
          [Fact]
         public async Task Executar_ComAlunoNull()
         {
-
             //Arrange
             var alunoMock = AlunoMock.GetMockNull();
             var alunoDTO = ResponseAlunoDtoMock.GetMockNull();
@@ -94,7 +88,6 @@ namespace Tests.UseCase
             await _alunoService.DidNotReceive().UpdateAsync(Arg.Any<Aluno>(), Arg.Any<CancellationToken>());
             Assert.Null(retorno);
         }
-
 
 
     }
