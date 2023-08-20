@@ -27,13 +27,11 @@ namespace Bussiness.UseCases
                 if (alunoRecuperado is null)
                     return;
 
-                if (alunoRecuperado.Status.Equals((int)eStatusAluno.Desativado))
+                if (alunoRecuperado.Status == eStatusAluno.Desativado)
                     return;
 
                 alunoRecuperado.Status = eStatusAluno.Desativado;
-                var alunoDesativado = await _alunoService.UpdateAsync(alunoRecuperado, cancellationToken);
-
-                _mapper.Map<ResponseAlunoDto>(alunoDesativado);
+                _mapper.Map<ResponseAlunoDto>(await _alunoService.UpdateAsync(alunoRecuperado, cancellationToken));
 
             }
             catch (Exception)

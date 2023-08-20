@@ -20,6 +20,7 @@ namespace Tests.Mock.Entidades
 
             var alunoFaker = new Faker<Aluno>()
                 .RuleFor(a => a.AlunoId, f => f.Random.Guid())
+                .RuleFor(a => a.Status, f => Bussiness.Enum.eStatusAluno.Ativo)
                 .RuleFor(a => a.Nome, f => f.Person.FullName)
                 .RuleFor(a => a.Idade, f => f.Random.Int(18, 30))
                 .RuleFor(a => a.CPF, f => GenerateRandomCpf(f))
