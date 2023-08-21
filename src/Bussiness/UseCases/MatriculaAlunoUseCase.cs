@@ -21,7 +21,7 @@ namespace Bussiness.UseCases
             _mapper = mapper;
         }
 
-        public async Task Execute(Aluno aluno, CancellationToken cancellationToken, Guid CorrelationId)
+        public async Task Execute(Aluno aluno, Curso curso, CancellationToken cancellationToken, Guid CorrelationId)
         {
             try
             {
@@ -30,13 +30,16 @@ namespace Bussiness.UseCases
                 if (alunoRecuperado is null)
                     return;
 
-                var matricula = await _matriculaService.ObterMatricula(alunoRecuperado, cancellationToken, CorrelationId);
+                var matricula = await _matriculaService.ObterMatriculaAsync(alunoRecuperado, cancellationToken, CorrelationId);
 
                 if (matricula is not null && matricula?.Status == eStatusMatricula.Ativa)
                     return;
 
+                //TODO - Adicionar Chamada a Interface do UseCaseOrdemPagamento para executar calculos e mandar o boleto para o Aluno
+            
+
                 _mapper.Map<ResponseMatriculaDto>
-                         (await _matriculaService.InsertAsync(alunoRecuperado, cancellationToken, CorrelationId));
+                         (await _matriculaService.InsertAsync(alunoRecuperado, curso, cancellationToken, CorrelationId));
             }
             catch (Exception)
             {
@@ -45,5 +48,7 @@ namespace Bussiness.UseCases
 
             await Task.CompletedTask;
         }
+
+
     }
 }

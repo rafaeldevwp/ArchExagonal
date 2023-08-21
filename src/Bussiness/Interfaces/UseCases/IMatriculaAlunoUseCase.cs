@@ -8,6 +8,6 @@ namespace Bussiness.Interfaces.UseCases
 {
     public interface IMatriculaAlunoUseCase
     {
-        Task Execute(Aluno aluno, CancellationToken cancellationToken, Guid CorrelationId);
+        Task Execute(Aluno aluno, Curso curso, CancellationToken cancellationToken, Guid CorrelationId);
     }
 }
