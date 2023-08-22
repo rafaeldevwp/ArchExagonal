@@ -14,8 +14,8 @@ namespace Bussiness.Services.ValidadorEntidades
                 .NotEmpty().WithMessage("O nome do professor é obrigatório.")
                 .MaximumLength(100).WithMessage("O nome do professor não pode ter mais de 100 caracteres.");
 
-            RuleFor(professor => professor.Status)
-                .InclusiveBetween(0, 2).WithMessage("O status do professor deve estar entre 0 e 2.");
+            // RuleFor(professor => professor.Status)
+            //     .InclusiveBetween(0, 2).WithMessage("O status do professor deve estar entre 0 e 2.");
 
             RuleFor(professor => professor.Cursos)
                 .NotEmpty().WithMessage("Pelo menos um curso deve estar associado ao professor.")

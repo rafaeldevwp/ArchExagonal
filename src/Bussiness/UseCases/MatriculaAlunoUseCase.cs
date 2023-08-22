@@ -35,9 +35,6 @@ namespace Bussiness.UseCases
                 if (matricula is not null && matricula?.Status == eStatusMatricula.Ativa)
                     return;
 
-                //TODO - Adicionar Chamada a Interface do UseCaseOrdemPagamento para executar calculos e mandar o boleto para o Aluno
-            
-
                 _mapper.Map<ResponseMatriculaDto>
                          (await _matriculaService.InsertAsync(alunoRecuperado, curso, cancellationToken, CorrelationId));
             }
