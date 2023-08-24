@@ -35,8 +35,16 @@ namespace Bussiness.UseCases
                 if (matricula is not null && matricula?.Status == eStatusMatricula.Ativa)
                     return;
 
+                var novaMatricula = new Matricula
+                {
+                    MatriculaId = Guid.NewGuid(),
+                    Status = eStatusMatricula.PendentePagamento,
+                    Aluno = aluno,
+                    Curso = curso
+                };
+
                 _mapper.Map<ResponseMatriculaDto>
-                         (await _matriculaService.InsertAsync(alunoRecuperado, curso, cancellationToken, CorrelationId));
+                         (await _matriculaService.InsertAsync(novaMatricula, cancellationToken, CorrelationId));
             }
             catch (Exception)
             {

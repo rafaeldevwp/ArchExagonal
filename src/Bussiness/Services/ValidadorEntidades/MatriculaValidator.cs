@@ -26,10 +26,10 @@ namespace Bussiness.Services.ValidadorEntidades
             .NotNull().WithMessage("A matrícula deve estar associada a um aluno.")
             .SetValidator(new AlunoValidator()); // Validador para a propriedade Aluno
 
-        RuleForEach(matricula => matricula.Curso)
-            .NotNull().WithMessage("A matrícula deve estar associada a um curso.")
-            .SetValidator(new CursoValidator()); 
-        }
+        // RuleForEach(matricula => matricula.Curso)
+        //     .NotNull().WithMessage("A matrícula deve estar associada a um curso.")
+        //     .SetValidator(new CursoValidator()); 
+         }
 
     }
 }

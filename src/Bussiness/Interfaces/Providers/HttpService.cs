@@ -7,7 +7,7 @@ namespace Bussiness.Interfaces.Providers
 {
     public interface HttpService
     {
-        Task<HttpContent> Post(HttpClient httpClient);
-        Task<HttpContent> Get();
+        // Task<T> Post(T httpClient);
+        // Task<T> Get();
     }
 }

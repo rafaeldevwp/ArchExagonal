@@ -10,6 +10,11 @@ namespace Infra.Services.Matricula
             throw new NotImplementedException();
         }
 
+        public Task<Bussiness.Entidades.Matricula> InsertAsync(Bussiness.Entidades.Matricula matricula, CancellationToken cancellationToken, Guid correlationId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Bussiness.Entidades.Matricula> ObterMatriculaAsync(Aluno aluno, CancellationToken cancellationToken, Guid correlationId)
         {
             throw new NotImplementedException();
