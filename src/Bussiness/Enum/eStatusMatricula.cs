@@ -4,7 +4,8 @@ namespace Bussiness.Enum
     {
         Ativa = 1,
         Desativada = 2,
-        NaoVinculada = 3
+        NaoVinculada = 3,
+        PendentePagamento = 4
 
     }
 }

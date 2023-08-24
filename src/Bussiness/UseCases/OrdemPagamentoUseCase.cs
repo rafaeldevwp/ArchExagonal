@@ -1,16 +1,30 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Bussiness.Entidades;
+using Bussiness.Interfaces.Services;
 using Bussiness.Interfaces.UseCases;
 
 namespace Bussiness.UseCases
 {
     public class OrdemPagamentoUseCase : IOrdemPagamentoUseCase
     {
-        public Task Executar()
+        private readonly IPagamentoService _pagamentoService;
+
+        public OrdemPagamentoUseCase(IPagamentoService pagamentoService)
         {
-            throw new NotImplementedException();
+            _pagamentoService = pagamentoService;
+        }
+
+        public async Task Executar(Aluno aluno, Curso curso, CancellationToken cancellationToken, Guid CorrelationID)
+        {
+            try
+            {
+                await _pagamentoService.SolicitarPagamentoAsync(aluno, curso);
+            }
+            catch (Exception)
+            {
+
+            }
+
+          
         }
     }
 }
