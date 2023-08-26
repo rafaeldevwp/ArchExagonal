@@ -13,11 +13,11 @@ namespace Bussiness.UseCases
             _pagamentoService = pagamentoService;
         }
 
-        public async Task Executar(Aluno aluno, Curso curso, CancellationToken cancellationToken, Guid CorrelationID)
+        public async Task Executar(Matricula matricula, CancellationToken cancellationToken, Guid CorrelationID)
         {
             try
             {
-                await _pagamentoService.SolicitarPagamentoAsync(aluno, curso);
+                await _pagamentoService.SolicitarPagamentoAsync(matricula);
             }
             catch (Exception)
             {

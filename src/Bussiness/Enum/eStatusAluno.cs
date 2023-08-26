@@ -5,6 +5,5 @@ namespace Bussiness.Enum
         Ativo = 1,
         Desativado =2,
         NaoVinculado =3
-
     }
 }

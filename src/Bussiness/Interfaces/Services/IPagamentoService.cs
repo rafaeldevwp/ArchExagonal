@@ -8,7 +8,7 @@ namespace Bussiness.Interfaces.Services
 {
     public interface IPagamentoService
     {
-        Task SolicitarPagamentoAsync(Aluno aluno,Curso curso);
+        Task SolicitarPagamentoAsync(Matricula matricula);
 
         Task ReceberPagamentoAsync(HttpClient httpClient);
     }

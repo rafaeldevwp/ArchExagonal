@@ -10,5 +10,6 @@ namespace Bussiness.Entidades
         public Professor? Professor { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
+        public double Preco { get; set; }
     }
 }

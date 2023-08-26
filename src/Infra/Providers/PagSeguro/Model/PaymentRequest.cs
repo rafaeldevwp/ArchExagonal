@@ -1,4 +1,4 @@
-namespace Infra.Providers.PagSeguro.Entidades
+namespace Infra.Providers.PagSeguro.Model
 {
     public class PaymentRequest
     {

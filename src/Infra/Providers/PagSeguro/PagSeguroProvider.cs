@@ -10,7 +10,7 @@ namespace Infra.Providers.PagSeguro
             throw new NotImplementedException();
         }
 
-        public async Task SolicitarPagamentoAsync(Aluno aluno, Curso curso)
+        public async Task SolicitarPagamentoAsync(Matricula matricula)
         {
             throw new NotImplementedException();
         }
