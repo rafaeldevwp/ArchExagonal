@@ -28,6 +28,7 @@ namespace Infra.Services.AlunoServices
         public async Task<Aluno> InsertAsync(Aluno aluno, CancellationToken cancellationToken)
         {
             var existingAluno = await _alunoRepository.ObterAlunoAsync(aluno, cancellationToken);
+            
             if (existingAluno == null)
                 return await _alunoRepository.InsertAsync(aluno, cancellationToken);
 
