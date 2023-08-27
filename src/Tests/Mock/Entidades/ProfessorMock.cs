@@ -15,7 +15,7 @@ namespace Tests.Mock.Entidades
                 .RuleFor(p => p.Nome, f => f.Name.FullName())
                 .RuleFor(p => p.CPF, f => GenerateRandomCpf(f)) // Gera um CPF válido fictício
                 .RuleFor(p => p.Status, f => f.PickRandomWithout<eStatusProfessor>())
-                .RuleFor(p => p.Cursos, f => CursoMock.GenerateListMock(3)) // Gera uma lista de 3 cursos fictícios
+                .RuleFor(p => p.Cursos, f => CursoMock.GenerateListMock(1)) // Gera uma lista de 3 cursos fictícios
                 .RuleFor(p => p.DataCadastro, f => f.Date.Past())
                 .RuleFor(p => p.DataAlteracao, f => f.Date.Recent());
 

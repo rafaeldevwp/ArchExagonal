@@ -35,5 +35,7 @@ namespace Tests.Mock.Entidades
             return cursoFaker.ToList(); // Converta o cursoFaker para uma lista
         }
 
+        public static Curso GenerateMockNull() => default;
+
     }
 }

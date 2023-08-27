@@ -35,14 +35,14 @@ namespace Infra.Services
             return await _cursoRepository.InsertAsync(curso, cancellationToken);
         }
 
-        public async  Task<Curso> ObterCursoAsync(Curso curso, CancellationToken cancellationToken)
+        public async Task<Curso> ObterCursoAsync(Curso curso, CancellationToken cancellationToken)
         {
-          return await _cursoRepository.ObterCursoAsync(curso, cancellationToken);
+            return await _cursoRepository.ObterCursoAsync(curso, cancellationToken);
         }
 
         public async Task<ICollection<Curso>> ObterCursosAsync(CancellationToken cancellationToken)
         {
-             return await _cursoRepository.ObterCursosAsync(cancellationToken);
+            return await _cursoRepository.ObterCursosAsync(cancellationToken);
         }
 
         public async Task<Curso> UpdateCursoAsync(Curso curso, CancellationToken cancellationToken)
@@ -50,7 +50,7 @@ namespace Infra.Services
             var cursoConsulta = await _cursoRepository.ObterCursoAsync(curso, cancellationToken);
 
             if (cursoConsulta == null)
-                throw new NullReferenceException();
+                throw new ArgumentNullException();
 
             return await _cursoRepository.UpdateCursoAsync(curso, cancellationToken);
         }
