@@ -1,6 +1,10 @@
+
+using Application.Configs;
 using Bussiness.Interfaces.Services;
+using Infra.Configs;
 using Infra.Services.AlunoServices;
 using Infra.Services.Matricula;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //AutoMapper
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(AutoMapperConfigs));
 
 //Logger
 builder.Logging.ClearProviders();
@@ -22,9 +26,13 @@ var Logger = new LoggerConfiguration()
 .WriteTo.Console()
 .CreateLogger();
 
+
+
 //Injeções
 builder.Services.AddScoped<IAlunoServices, AlunoServices>();
 builder.Services.AddScoped<IMatriculaService, MatriculaService>();
+DataDependencyInjection.AdddataDependencies(builder.Services);
+
 
 var app = builder.Build();
 
@@ -33,6 +41,7 @@ if (app.Environment.IsDevelopment())
 {
     Logger.Information("Iniciando minha API");
     app.UseSwagger();
+    
 }
 
 //app.UseHttpsRedirection();

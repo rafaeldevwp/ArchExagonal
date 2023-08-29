@@ -1,54 +1,75 @@
 using Bussiness.Interfaces.Providers;
+using Flurl;
 using Flurl.Http;
+using Microsoft.VisualBasic;
 
 namespace Infra.Providers.Configs
 {
-    public class HttpService<T> : IHttpService<T>
+    public class HttpService : IHttpService
     {
-        public async Task<T> DeleteJsonAsync(string url)
+        public string BaseUrl { get; set; }
+        public AuthParameter authParameter { get; set; }
+
+        public async Task<T> DeleteJsonAsync<T>(string url)
         {
-            return await url.DeleteAsync().ReceiveJson<T>();
+            var response = await GetBaseRequest(BaseUrl).DeleteAsync();
+            return await HandleResponse<T>(response);
         }
 
-        public async Task<T> DeleteJsonAsync(string url, object headers)
+        public async Task<T> GetJsonAsync<T>(string url)
         {
-            var flurlRequest = new FlurlRequest(url).WithHeaders(headers);
-            return await flurlRequest.DeleteAsync().ReceiveJson<T>();
+            var response = await GetBaseRequest(url).GetAsync();
+            return await HandleResponse<T>(response);
         }
 
-        public async Task<T> GetJsonAsync(string url)
+    
+        public async Task<T> PostJsonAsync<T>(string url, object data)
         {
-            return await url.GetJsonAsync<T>();
+            var response = await GetBaseRequest(BaseUrl).PostJsonAsync(data);
+            return await HandleResponse<T>(response);
         }
 
-        public async Task<T> GetJsonAsync(string url, object queryParams)
+   
+        public async Task<T> PutJsonAsync<T>(string url, object data)
         {
-            return await new FlurlRequest(url).SetQueryParams(queryParams).GetJsonAsync<T>();
+            var response = await GetBaseRequest(BaseUrl).PutJsonAsync(data);
+            return await HandleResponse<T>(response);
         }
 
-        public async Task<T> GetJsonAsync(string url, object queryParams, object headers)
+
+        private IFlurlRequest GetBaseRequest(string url)
         {
-            return await new FlurlRequest(url).SetQueryParams(queryParams).WithHeaders(headers).GetJsonAsync<T>();
+            string flurlUrl;
+
+            if (url.Contains('?'))
+                flurlUrl = BaseUrl + url;
+            else
+                flurlUrl = BaseUrl.AppendPathSegment(url); //todo - implementar;
+
+            var request = flurlUrl.AllowAnyHttpStatus();
+
+            if (authParameter != null && !string.IsNullOrEmpty(authParameter.Type))
+            {
+
+                if (!string.IsNullOrEmpty(authParameter.Token))
+                    request = request.WithHeader(authParameter.Type, authParameter.Token);
+            }
+            return request;
         }
 
-        public async Task<T> PostJsonAsync(string url, object data)
+        private async Task<T> HandleResponse<T>(IFlurlResponse response)
         {
-            return await url.PostJsonAsync(data).ReceiveJson<T>();
+            if (!response.ResponseMessage.IsSuccessStatusCode)
+                throw new HttpRequestException($"HTTP request failed with status code {response.StatusCode}");
+
+            return await response.GetJsonAsync<T>();
         }
 
-        public async Task<T> PostJsonAsync(string url, object data, object headers)
-        {
-            return await new FlurlRequest(url).WithHeaders(headers).PostJsonAsync(data).ReceiveJson<T>();
-        }
+    }
 
-        public async Task<T> PutJsonAsync(string url, object data)
-        {
-            return await url.PutAsync().ReceiveJson<T>();
-        }
-
-        public async Task<T> PutJsonAsync(string url, object data, object headers)
-        {
-            return await new FlurlRequest(url).WithHeaders(headers).PutJsonAsync(data).ReceiveJson<T>();
-        }
+    public class AuthParameter
+    {
+        public string Type { get; set; }
+        public string Token { get; set; }
     }
 }

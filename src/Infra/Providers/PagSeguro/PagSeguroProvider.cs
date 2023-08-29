@@ -1,18 +1,26 @@
 using Bussiness.Entidades;
+using Bussiness.Interfaces.Providers;
 using Bussiness.Interfaces.Services;
 
 namespace Infra.Providers.PagSeguro
 {
-    public class PagSeguroProvider : IPagamentoService
-    {
-        public Task ReceberPagamentoAsync(HttpClient httpClient)
-        {
-            throw new NotImplementedException();
-        }
+//     public class PagSeguroProvider : IPagamentoService
+//     {
+//         private readonly IHttpService<IPagamentoService> _httpRequest;
 
-        public async Task SolicitarPagamentoAsync(Matricula matricula)
-        {
-            throw new NotImplementedException();
-        }
-    }
-}
+//         public PagSeguroProvider(IHttpService<IPagamentoService> httpRequest)
+//         {
+//             _httpRequest = httpRequest;
+//         }
+
+//         public Task ReceberPagamentoAsync(HttpClient httpClient)
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public async Task SolicitarPagamentoAsync(Matricula matricula)
+//         {
+//           // _httpRequest.PostJsonAsync()
+//         }
+//     }
+ }
