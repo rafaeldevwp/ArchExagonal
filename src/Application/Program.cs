@@ -1,11 +1,8 @@
-
 using Application.Configs;
-using Bussiness.Interfaces.Services;
 using Infra.Configs;
-using Infra.Services.AlunoServices;
-using Infra.Services.Matricula;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Serilog;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,37 +13,39 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//AutoMapper
+// AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMapperConfigs));
 
-//Logger
+// Logger
 builder.Logging.ClearProviders();
 var Logger = new LoggerConfiguration()
-.MinimumLevel.Information()
-.WriteTo.Console()
-.CreateLogger();
+    .MinimumLevel.Information()
+    .WriteTo.Console()
+    .CreateLogger();
 
+// Injeções
 
-
-//Injeções
-builder.Services.AddScoped<IAlunoServices, AlunoServices>();
-builder.Services.AddScoped<IMatriculaService, MatriculaService>();
-DataDependencyInjection.AdddataDependencies(builder.Services);
-
+DataDependencyInjection.AddDataDependencies(builder.Services, builder.Configuration);
+DataDependencyInjection.ConfigureServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    Logger.Information("Iniciando minha API");
     app.UseSwagger();
-    
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Nome do Seu Projeto API V1");
+
+    });
+
 }
 
-//app.UseHttpsRedirection();
 
-//app.UseAuthorization();
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
 
 app.MapControllers();
 

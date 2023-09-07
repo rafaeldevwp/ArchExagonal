@@ -4,23 +4,24 @@ using Bussiness.Interfaces.Services;
 
 namespace Infra.Providers.PagSeguro
 {
-//     public class PagSeguroProvider : IPagamentoService
-//     {
-//         private readonly IHttpService<IPagamentoService> _httpRequest;
+   
+    public class PagSeguroProvider : IPagamentoService
+    {
+         private readonly IHttpService _httpService;
 
-//         public PagSeguroProvider(IHttpService<IPagamentoService> httpRequest)
-//         {
-//             _httpRequest = httpRequest;
-//         }
+        public PagSeguroProvider(IHttpService httpService)
+        {
+            _httpService = httpService;
+        }
 
-//         public Task ReceberPagamentoAsync(HttpClient httpClient)
-//         {
-//             throw new NotImplementedException();
-//         }
+        public Task ReceberPagamentoAsync(HttpClient httpClient)
+        {
+            throw new NotImplementedException();
+        }
 
-//         public async Task SolicitarPagamentoAsync(Matricula matricula)
-//         {
-//           // _httpRequest.PostJsonAsync()
-//         }
-//     }
+        public Task SolicitarPagamentoAsync(Matricula matricula)
+        {
+           throw new NotImplementedException();
+        }
+    }
  }
