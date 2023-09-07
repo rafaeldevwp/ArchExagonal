@@ -43,7 +43,7 @@ namespace Bussiness.UseCases
                     Curso = curso
                 };
 
-                _mapper.Map<ResponseMatriculaDto>
+                _mapper.Map<ObterResponseMatriculaDto>
                          (await _matriculaService.InsertAsync(novaMatricula, cancellationToken, CorrelationId));
             }
             catch (Exception)

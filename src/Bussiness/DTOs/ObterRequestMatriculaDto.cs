@@ -6,7 +6,7 @@ using Bussiness.Entidades;
 
 namespace Bussiness.DTOs
 {
-    public class RequestMatriculaDto
+    public class ObterRequestMatriculaDto
     {
         public int Matricula { get; set; }
         public Aluno? Aluno { get; set; }

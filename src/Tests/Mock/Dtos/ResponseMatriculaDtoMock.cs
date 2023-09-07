@@ -7,11 +7,11 @@ namespace Tests.Mock.Dtos
 {
     public static class ResponseMatriculaDtoMock
     {
-        public static ResponseMatriculaDto GenerateMock()
+        public static ObterResponseMatriculaDto GenerateMock()
         {
             var matriculaId = Guid.NewGuid();
 
-            var matriculaDtoFaker = new Faker<ResponseMatriculaDto>()
+            var matriculaDtoFaker = new Faker<ObterResponseMatriculaDto>()
                 .RuleFor(m => m.MatriculaId, matriculaId)
                 .RuleFor(m => m.DataCriacao, f => f.Date.Past())
                 .RuleFor(m => m.DataAlteracao, f => f.Date.Recent())

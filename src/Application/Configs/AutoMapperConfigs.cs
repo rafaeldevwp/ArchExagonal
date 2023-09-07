@@ -8,9 +8,9 @@ namespace Application.Configs
     {
         public AutoMapperConfigs()
         {
-            CreateMap<Aluno, RequestAlunoDto>()
+            CreateMap<Aluno, ObterRequestAlunoDto>()
             .ReverseMap();
-            CreateMap<Aluno, ResponseAlunoDto>()
+            CreateMap<Aluno, ObterResponseAlunoDto>()
             .ReverseMap();
         }
     }

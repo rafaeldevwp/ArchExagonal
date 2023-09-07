@@ -7,7 +7,7 @@ namespace Tests.Mock
 {
     public static class ResponseAlunoDtoMock
     {
-        public static ResponseAlunoDto GetMock()
+        public static ObterResponseAlunoDto GetMock()
         {
             var faker = new Faker();
 
@@ -21,7 +21,7 @@ namespace Tests.Mock
                 .RuleFor(e => e.Complemento, f => f.Address.SecondaryAddress());
 
 
-            var alunoFaker = new Faker<ResponseAlunoDto>()
+            var alunoFaker = new Faker<ObterResponseAlunoDto>()
                 .RuleFor(a => a.AlunoId, f => f.Random.Guid())
                 .RuleFor(a => a.Nome, f => f.Person.FullName)
                 .RuleFor(a => a.Endereco, f => enderecoFaker.Generate())
@@ -30,7 +30,7 @@ namespace Tests.Mock
             return alunoFaker.Generate();
         }
 
-         public static ResponseAlunoDto GetMockNull() => default;
+         public static ObterResponseAlunoDto GetMockNull() => default;
 
     }
 }

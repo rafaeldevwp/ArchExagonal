@@ -3,7 +3,7 @@ using Bussiness.Enum;
 
 namespace Bussiness.DTOs
 {
-    public class ResponseAlunoDto
+    public class ObterResponseAlunoDto
     {
         public Guid AlunoId { get; set; }
         public string? Nome { get; set; }

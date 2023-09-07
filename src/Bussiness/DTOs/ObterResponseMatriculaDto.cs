@@ -7,7 +7,7 @@ using Bussiness.Enum;
 
 namespace Bussiness.DTOs
 {
-    public class ResponseMatriculaDto
+    public class ObterResponseMatriculaDto
     {
         public Guid MatriculaId { get; set; }
         public DateTime DataCriacao { get; set; }

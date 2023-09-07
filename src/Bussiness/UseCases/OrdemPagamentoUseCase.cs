@@ -17,7 +17,7 @@ namespace Bussiness.UseCases
         {
             try
             {
-                await _pagamentoService.SolicitarPagamentoAsync(matricula);
+                throw new  NotImplementedException();
             }
             catch (Exception)
             {
