@@ -10,11 +10,6 @@ namespace Infra.Providers.PagSeguro.Model
         public string ItemAmount1 { get; set; }
         public string ItemQuantity1 { get; set; }
         public string ItemWeight1 { get; set; }
-        public string ItemId2 { get; set; }
-        public string ItemDescription2 { get; set; }
-        public string ItemAmount2 { get; set; }
-        public string ItemQuantity2 { get; set; }
-        public string ItemWeight2 { get; set; }
         public string Reference { get; set; }
         public string SenderName { get; set; }
         public string SenderAreaCode { get; set; }

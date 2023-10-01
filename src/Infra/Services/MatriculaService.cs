@@ -24,5 +24,10 @@ namespace Infra.Services.Matricula
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<Bussiness.Entidades.Matricula>> ObterMatriculasAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
