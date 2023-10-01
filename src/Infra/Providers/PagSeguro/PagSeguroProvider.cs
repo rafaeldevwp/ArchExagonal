@@ -28,9 +28,6 @@ namespace Infra.Providers.PagSeguro
 
         public async Task SolicitarPagamentoAsync(Matricula matricula, CancellationToken cancellationToken)
         {
-
-            try
-            {
                 var listaCursos = await _matriculaService.ObterMatriculasAsync(cancellationToken);
 
                 var matriculasPendentes = listaCursos.Where(c => c.Status == Bussiness.Enum.eStatusMatricula.PendentePagamento);
@@ -50,12 +47,7 @@ namespace Infra.Providers.PagSeguro
 
                 });
             }
-            catch (Exception)
-            {
-                throw;
-            }
-           
 
         }
-    }
+    
 }

@@ -22,11 +22,11 @@ namespace Bussiness.UseCases
         {
             try
             {
-               throw new NotImplementedException();
+                await _pagamentoService.SolicitarPagamentoAsync(matricula,cancellationToken);
             }
             catch (Exception)
             {
-
+                throw;
             }
 
 
