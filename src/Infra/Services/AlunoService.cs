@@ -29,10 +29,11 @@ namespace Infra.Services.AlunoServices
         {
             var existingAluno = await _alunoRepository.ObterAlunoAsync(aluno, cancellationToken);
             
-            if (existingAluno == null)
-                return await _alunoRepository.InsertAsync(aluno, cancellationToken);
+            if (existingAluno != null)
+                 return existingAluno ;
 
-            return existingAluno;
+           aluno.Status = eStatusAluno.NaoVinculado;
+           return  await _alunoRepository.InsertAsync(aluno, cancellationToken);
         }
 
         public async Task<Aluno> ObterAlunoAsync(Aluno aluno, CancellationToken cancellationToken)

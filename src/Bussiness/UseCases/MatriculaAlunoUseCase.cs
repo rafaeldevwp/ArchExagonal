@@ -4,6 +4,7 @@ using Bussiness.Interfaces.Services;
 using Bussiness.Enum;
 using AutoMapper;
 using Bussiness.DTOs;
+using System.Security.AccessControl;
 
 namespace Bussiness.UseCases
 {
@@ -13,11 +14,13 @@ namespace Bussiness.UseCases
         private readonly IMatriculaService _matriculaService;
         private readonly IAlunoServices _alunoService;
         private readonly IMapper _mapper;
+        private readonly ICursoService _cursoService;
 
-        public MatriculaAlunoUseCase(IMatriculaService matriculaService, IAlunoServices alunoService, IMapper mapper)
+        public MatriculaAlunoUseCase(IMatriculaService matriculaService, IAlunoServices alunoService, IMapper mapper, ICursoService cursoService)
         {
             _matriculaService = matriculaService;
             _alunoService = alunoService;
+            _cursoService = cursoService;
             _mapper = mapper;
         }
 
@@ -25,15 +28,22 @@ namespace Bussiness.UseCases
         {
             try
             {
+                var cursoRecuperado = await _cursoService.ObterCursoAsync(curso,cancellationToken);
                 var alunoRecuperado = await _alunoService.ObterAlunoAsync(aluno, cancellationToken);
 
-                if (alunoRecuperado is null)
+                if(cursoRecuperado == null || cursoRecuperado.Status != eStatusCurso.Ativo)
+                    return;
+
+                if (alunoRecuperado == null || alunoRecuperado.Status == eStatusAluno.Ativo)
                     return;
 
                 var matricula = await _matriculaService.ObterMatriculaAsync(alunoRecuperado, cancellationToken, CorrelationId);
 
                 if (matricula is not null && matricula?.Status == eStatusMatricula.Ativa)
                     return;
+
+
+                aluno.Status = eStatusAluno.Ativo;
 
                 var novaMatricula = new Matricula
                 {
