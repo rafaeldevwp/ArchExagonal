@@ -1,3 +1,4 @@
+using Application.Dtos;
 using AutoMapper;
 using Bussiness.DTOs;
 using Bussiness.Entidades;
@@ -12,6 +13,8 @@ namespace Application.Configs
             .ReverseMap();
             CreateMap<Aluno, ObterResponseAlunoDto>()
             .ReverseMap();
+            CreateMap<RequestAlunoDto, ObterRequestAlunoDto>()
+          .ReverseMap();
         }
     }
 }

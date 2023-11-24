@@ -42,7 +42,6 @@ namespace Bussiness.UseCases
                 if (matricula is not null && matricula?.Status == eStatusMatricula.Ativa)
                     return;
 
-
                 aluno.Status = eStatusAluno.Ativo;
 
                 var novaMatricula = new Matricula

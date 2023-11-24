@@ -10,6 +10,7 @@ namespace Bussiness.Interfaces.Repository
     {
         Task<Aluno> InsertAsync(Aluno aluno, CancellationToken cancellationToken);
         Task<Aluno> ObterAlunoAsync(Aluno aluno, CancellationToken cancellationToken);
+        Task<Aluno> ObterAlunoIdAsync(long cpf, CancellationToken cancellationToken);
         Task<ICollection<Aluno>> ObterAlunosAsync(CancellationToken cancellationToken);
         Task<Aluno> UpdateAsync(Aluno aluno,CancellationToken cancellationToken);
         Task<Aluno> Deletesync(Aluno aluno,CancellationToken cancellationToken);
